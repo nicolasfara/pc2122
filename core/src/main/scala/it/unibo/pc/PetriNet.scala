@@ -1,13 +1,15 @@
 package it.unibo.pc
 
-import utils.MSet
+import it.unibo.pc.utils.*
+import scala.collection.MultiSet
+import scala.reflect.*
 
 object PetriNet {
 
   /**
    * A Petri-net is composed by a triple: `pre-condition`, `effects`, `inhibition`.
    */
-  type PetriNet[P] = Set[(MSet[P], MSet[P], MSet[P])]
+  type PetriNet[P <: Enum] = Set[(MultiSet[P], MultiSet[P], MultiSet[P])]
 
   /**
    * Create a new Petri-net from a list of triple representing the model.
@@ -16,29 +18,30 @@ object PetriNet {
    * @return
    *   the set of the transitions of the model.
    */
-  def apply[P](transitions: (MSet[P], MSet[P], MSet[P])*): PetriNet[P] = transitions.toSet
+  def apply[P <: Enum](transitions: (MultiSet[P], MultiSet[P], MultiSet[P])*): PetriNet[P] = transitions.toSet
 
-  def toPartialFunction[P](pn: PetriNet[P]): PartialFunction[MSet[P], Set[MSet[P]]] = { case m =>
+  def toPartialFunction[P <: Enum](pn: PetriNet[P]): PartialFunction[MultiSet[P], Set[MultiSet[P]]] = { case m =>
     for {
-      (cond, eff, inh) <- pn if (m disjoined inh)
+      (cond, eff, inh) <- pn if (m intersect inh)
       out <- m extract cond
     } yield out union eff
   }
 
   // factory of A System
-  def toSystem[P](pn: PetriNet[P]): System[MSet[P]] = System.ofFunction(toPartialFunction(pn))
+  def toSystem[P <: Enum](pn: PetriNet[P]): System[MultiSet[P]] = System.ofFunction(toPartialFunction(pn))
 
-  def checkSafetyProperty[F](
-      model: System[MSet[F]],
-      initialState: MSet[F],
+  def checkSafetyProperty[F <: Enum](
+      model: System[MultiSet[F]],
+      initialState: MultiSet[F],
       depth: Int,
-      condition: List[MSet[F]] => Boolean,
+      condition: List[MultiSet[F]] => Boolean,
   ): Boolean = {
     model.paths(initialState, depth).forall(condition)
   }
 }
 
-extension [S](self: MSet[S]) def ~~>(otherSet: MSet[S]): (MSet[S], MSet[S], MSet[S]) = (self, otherSet, MSet[S]())
+extension [S <: Enum](self: MultiSet[S])
+  def ~~>(otherSet: MultiSet[S]): (MultiSet[S], MultiSet[S], MultiSet[S]) = (self, otherSet, MultiSet[S]())
 
-extension [S](self: (MSet[S], MSet[S], MSet[S]))
-  def ^^^(otherSet: MSet[S]): (MSet[S], MSet[S], MSet[S]) = (self._1, self._2, otherSet)
+extension [S <: Enum](self: (MultiSet[S], MultiSet[S], MultiSet[S]))
+  def ^^^(otherSet: MultiSet[S]): (MultiSet[S], MultiSet[S], MultiSet[S]) = (self._1, self._2, otherSet)

@@ -10,9 +10,7 @@ trait CoreSystem[S] {
 }
 
 /**
- * Basic analysis helper
- * @tparam S
- *   type of the system.
+ * Basic analysis helper.
  */
 trait System[S] extends CoreSystem[S] {
 
@@ -21,9 +19,9 @@ trait System[S] extends CoreSystem[S] {
   def complete(p: List[S]): Boolean = normalForm(p.last)
 
   // paths of exactly length `depth`
-  def paths(s: S, depth: Int): Stream[List[S]] = depth match {
-    case 0 => Stream()
-    case 1 => Stream(List(s))
+  def paths(s: S, depth: Int): LazyList[List[S]] = depth match {
+    case 0 => LazyList()
+    case 1 => LazyList(List(s))
     case _ =>
       for {
         path <- paths(s, depth - 1)
@@ -32,12 +30,12 @@ trait System[S] extends CoreSystem[S] {
   }
 
   // complete path with length '<= depth'
-  def completePathsUpToDepth(s: S, depth: Int): Stream[List[S]] =
-    Stream.iterate(1)(_ + 1) take (depth) flatMap (paths(s, _)) filter (complete(_)) // could be optimised
+  def completePathsUpToDepth(s: S, depth: Int): LazyList[List[S]] =
+    LazyList.iterate(1)(_ + 1) take (depth) flatMap (paths(s, _)) filter (complete(_)) // could be optimised
 
   // an infinite stream: might loop, use with care!
-  def completePaths(s: S): Stream[List[S]] =
-    Stream.iterate(1)(_ + 1) flatMap (paths(s, _)) filter (complete(_))
+  def completePaths(s: S): LazyList[List[S]] =
+    LazyList.iterate(1)(_ + 1) flatMap (paths(s, _)) filter (complete(_))
 }
 
 /**
