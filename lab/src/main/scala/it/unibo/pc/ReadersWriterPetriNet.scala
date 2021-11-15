@@ -1,8 +1,8 @@
 package it.unibo.pc
 
+import it.unibo.pc.utils.given
+import it.unibo.pc.utils.*
 import it.unibo.pc.PetriNet.{ checkSafetyProperty, toSystem }
-import it.unibo.pc.utils.MSet
-
 import scala.collection.MultiSet
 
 object ReadersWriterPetriNet extends App {
@@ -15,13 +15,13 @@ object ReadersWriterPetriNet extends App {
 
   def readersWritersSystem() = toSystem(
     PetriNet(
-      MultiSet(P1) ~~> MultiSet(P2),
-      MultiSet(P2) ~~> MultiSet(P3),
-      MultiSet(P2) ~~> MultiSet(P4),
-      MultiSet(P4, P5) ~~> MultiSet(P7) ^^^ MultiSet(P6),
-      MultiSet(P3, P5) ~~> MultiSet(P6, P5),
-      MultiSet(P7) ~~> MultiSet(P1, P5),
-      MultiSet(P6) ~~> MultiSet(P1),
+      P1 ~~> P2,
+      P2 ~~> P3,
+      P2 ~~> P4,
+      (P4, P5) ~~> P7 ^^^ P6,
+      (P3, P5) ~~> (P6, P5),
+      P7 ~~> (P1, P5),
+      P6 ~~> P1,
     ),
   )
 
