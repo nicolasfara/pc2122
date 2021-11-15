@@ -3,6 +3,7 @@ package it.unibo.pc
 import java.util.Random
 
 import utils.Stochastics
+import it.unibo.pc.utils.Stochastics.random
 
 trait CTMCSimulation[S] { self: CTMC[S] =>
 
@@ -15,7 +16,7 @@ trait CTMCSimulation[S] { self: CTMC[S] =>
         else {
           val next = Stochastics.cumulative(transitions(s).toList)
           val sumR = next.last._1
-          val choice = Stochastics.draw(next)(rnd)
+          val choice = Stochastics.draw(next)(using rnd)
           (t + Math.log(1 / rnd.nextDouble()) / sumR, choice)
         }
       }
