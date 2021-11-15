@@ -22,7 +22,7 @@ object PetriNet {
 
   def toPartialFunction[P <: Enum](pn: PetriNet[P]): PartialFunction[MultiSet[P], Set[MultiSet[P]]] = { case m =>
     for {
-      (cond, eff, inh) <- pn if (m intersect inh)
+      (cond, eff, inh) <- pn if (m disjoined inh)
       out <- m extract cond
     } yield out union eff
   }

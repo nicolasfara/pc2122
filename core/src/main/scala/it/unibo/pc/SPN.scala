@@ -1,13 +1,15 @@
 package it.unibo.pc
 
-import utils.MSet
+import scala.collection.MultiSet
+
+import it.unibo.pc.utils.*
 
 object SPN {
 
   // pre-conditions, rate, effects, inhibition
-  type SPN[P] = Set[(MSet[P], MSet[P] => Double, MSet[P], MSet[P])]
+  type SPN[P] = Set[(MultiSet[P], MultiSet[P] => Double, MultiSet[P], MultiSet[P])]
 
-  def toPartialFunction[P](spn: SPN[P]): PartialFunction[MSet[P], Set[(Double, MSet[P])]] = { case m =>
+  def toPartialFunction[P](spn: SPN[P]): PartialFunction[MultiSet[P], Set[(Double, MultiSet[P])]] = { case m =>
     for {
       (cond, rate, eff, inh) <- spn
       if (m disjoined inh)
@@ -16,8 +18,8 @@ object SPN {
     } yield (r, out union eff)
   }
 
-  def toCTMC[P](spn: SPN[P]): CTMC[MSet[P]] = CTMC.ofFunction(toPartialFunction(spn))
+  def toCTMC[P](spn: SPN[P]): CTMC[MultiSet[P]] = CTMC.ofFunction(toPartialFunction(spn))
 
-  def apply[P](transitions: (MSet[P], MSet[P] => Double, MSet[P], MSet[P])*): SPN[P] = transitions.toSet
+  def apply[P](transitions: (MultiSet[P], MultiSet[P] => Double, MultiSet[P], MultiSet[P])*): SPN[P] = transitions.toSet
 
 }
