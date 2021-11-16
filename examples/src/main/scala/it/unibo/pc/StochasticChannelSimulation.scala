@@ -2,6 +2,8 @@ package it.unibo.pc
 
 import it.unibo.pc.utils.*
 import StochasticChannel.State.*
+import it.unibo.pc.CTMCSimulation.{ averageTimeInState, timeInState }
+
 import java.util.Random
 
 object StochasticChannelSimulation extends App {
@@ -19,4 +21,7 @@ object StochasticChannelSimulation extends App {
         .mkString("\n"),
     )
   }
+
+  println("Average time: " + averageTimeInState(channelAnalysis, IDLE, DONE, 20, 10))
+  println("Time in fail: " + timeInState(channelAnalysis, IDLE, FAIL, DONE, 20, 10))
 }
