@@ -4,6 +4,7 @@ import it.unibo.pc.utils.given
 import it.unibo.pc.utils.*
 import it.unibo.pc.PetriNet.{ checkSafetyProperty, toSystem }
 import scala.collection.MultiSet
+import scala.language.implicitConversions
 
 object ReadersWriterPetriNet extends App {
 
@@ -32,14 +33,7 @@ object ReadersWriterPetriNet extends App {
       readersWritersSystem(),
       MultiSet(P1, P5),
       10,
-      l =>
-        l.forall(m => {
-          if (m.contains(P7)) {
-            m.size == 1
-          } else {
-            true
-          }
-        }),
+      s => s.forall(m => !m.containsAll(MultiSet(P1, P5))),
     ),
   )
 }
