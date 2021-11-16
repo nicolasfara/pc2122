@@ -1,8 +1,11 @@
 package it.unibo.pc.utils
 
 import scala.collection.MultiSet
+import scala.quoted.{ Expr, Quotes, Type }
 
 extension [S](mSet: MultiSet[S])
+  def containsAll(otherSet: MultiSet[S]): Boolean = otherSet.forall(mSet contains _)
+  def intersect(otherSet: MultiSet[S]): MultiSet[S] = MultiSet((mSet.toList intersect otherSet.toList): _*)
   def disjoined(otherSet: MultiSet[S]): Boolean = (mSet.toList intersect otherSet.toList).isEmpty
   def diff(otherSet: MultiSet[S]): MultiSet[S] = MultiSet((mSet.toList diff otherSet.toList): _*)
 

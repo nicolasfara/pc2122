@@ -37,6 +37,13 @@ object PetriNet {
       condition: List[MultiSet[F]] => Boolean,
   ): Boolean = {
     model.paths(initialState, depth).forall(condition)
+//    (1 to depth)
+//      .map(model.paths(initialState, _))
+//      .takeWhile(_.exists(p => p.tail.contains(p.head)))
+//      .flatten
+//      .reverse
+//      .foldLeft(LazyList[List[MultiSet[F]]]())((sl, nl) => if (sl.exists(_.containsSlice(nl))) sl else sl :+ nl)
+//      .forall(condition)
   }
 }
 
