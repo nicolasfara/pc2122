@@ -36,3 +36,7 @@ lazy val examples = project
 lazy val lab = project
   .in(file("lab"))
   .dependsOn(core)
+  .settings(
+    libraryDependencies ++= scalaTest,
+    libraryDependencies += scalaCheck,
+  )

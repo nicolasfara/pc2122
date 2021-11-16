@@ -6,7 +6,7 @@ import it.unibo.pc.PetriNet.{ checkSafetyProperty, toSystem }
 import scala.collection.MultiSet
 import scala.language.implicitConversions
 
-object ReadersWriterPetriNet extends App {
+object ReadersWriterPetriNet {
 
   enum States {
     case P1, P2, P3, P4, P5, P6, P7
@@ -23,17 +23,6 @@ object ReadersWriterPetriNet extends App {
       (P3, P5) ~~> (P6, P5),
       P7 ~~> (P1, P5),
       P6 ~~> P1,
-    ),
-  )
-
-  println(readersWritersSystem().paths(MultiSet(P1, P5), depth = 5).toList.mkString("\n"))
-
-  println(
-    checkSafetyProperty(
-      readersWritersSystem(),
-      MultiSet(P1, P5),
-      10,
-      s => s.forall(m => !m.containsAll(MultiSet(P1, P5))),
     ),
   )
 }
