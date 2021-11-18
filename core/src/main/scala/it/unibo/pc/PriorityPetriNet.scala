@@ -20,10 +20,9 @@ object PriorityPetriNet {
         p = priority
         out <- marking extract condition
       } yield (p, out union effects)
-      if (outStates.isEmpty) then { println("Codio"); Set.empty }
+      if (outStates.isEmpty) then Set.empty
       else {
         val maxPriority = outStates.map(_._1).max
-        println(maxPriority)
         outStates.filter(_._1 == maxPriority).map(_._2).toSet
       }
     }

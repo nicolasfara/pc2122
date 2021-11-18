@@ -19,6 +19,7 @@ object PPetriNet extends App {
       ((P0, P0), 3, P1, MultiSet.empty),
       (P0, 1, P2, MultiSet.empty),
       (P2, 0, P0, MultiSet.empty),
+      (P1, 0, P0, MultiSet.empty),
     ),
   )
 
