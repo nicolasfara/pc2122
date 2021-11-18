@@ -19,7 +19,7 @@ object SystemChannel extends App {
     SEND -> SEND,
     SEND -> DONE,
     SEND -> FAIL,
-    FAIL -> IDLE, //,DONE->DONE
+    FAIL -> IDLE, // ,DONE->DONE
   )
 
   // Analysis, by querying

@@ -1,9 +1,10 @@
 package it.unibo.pc
 
+import it.unibo.pc.utils.Stochastics.random
+
 import java.util.Random
 
 import utils.Stochastics
-import it.unibo.pc.utils.Stochastics.random
 
 trait CTMCSimulation[S] { self: CTMC[S] =>
 
@@ -74,7 +75,7 @@ object CTMCSimulation {
       val allTime = sumTimeUntilState(simSteps, finalState, nSteps)
       val untilTime = simSteps.take(nSteps).takeWhile(_._2 != finalState).filter(_._2 == untilState).map(_._1).sum
       (allTime, untilTime) match {
-        case (Some(all), until) => Some(all / until)
+        case (Some(all), until) => Some(until / all)
         case _ => None
       }
     }.fold(Some(0.0)) { (acc, elem) =>

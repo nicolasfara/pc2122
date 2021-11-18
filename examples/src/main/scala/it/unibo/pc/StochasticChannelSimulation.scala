@@ -1,10 +1,12 @@
 package it.unibo.pc
 
+import it.unibo.pc.CTMCSimulation.averageTimeInState
+import it.unibo.pc.CTMCSimulation.timeInState
 import it.unibo.pc.utils.*
-import StochasticChannel.State.*
-import it.unibo.pc.CTMCSimulation.{ averageTimeInState, timeInState }
 
 import java.util.Random
+
+import StochasticChannel.State.*
 
 object StochasticChannelSimulation extends App {
 

@@ -1,9 +1,9 @@
 package it.unibo.pc
 
 import it.unibo.pc.PetriNet.*
-import it.unibo.pc.utils.*
-import it.unibo.pc.ReadersWriterPetriNet.readersWritersSystem
 import it.unibo.pc.ReadersWriterPetriNet.States.*
+import it.unibo.pc.ReadersWriterPetriNet.readersWritersSystem
+import it.unibo.pc.utils.*
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

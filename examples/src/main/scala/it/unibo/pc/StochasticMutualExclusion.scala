@@ -1,7 +1,7 @@
 package it.unibo.pc
 
-import it.unibo.pc.utils.given
 import it.unibo.pc.utils.*
+import it.unibo.pc.utils.given
 
 import java.util.Random
 import scala.collection.MultiSet

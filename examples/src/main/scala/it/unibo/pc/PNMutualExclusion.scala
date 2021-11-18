@@ -1,9 +1,11 @@
 package it.unibo.pc
 
-import it.unibo.pc.utils.given
 import it.unibo.pc.PNMutualExclusion.Place
-import it.unibo.pc.PNMutualExclusion.Place.{ C, N, T }
+import it.unibo.pc.PNMutualExclusion.Place.C
+import it.unibo.pc.PNMutualExclusion.Place.N
+import it.unibo.pc.PNMutualExclusion.Place.T
 import it.unibo.pc.PetriNet.toSystem
+import it.unibo.pc.utils.given
 
 import scala.collection.MultiSet
 import scala.language.implicitConversions

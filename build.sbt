@@ -8,6 +8,10 @@ ThisBuild / licenses := List("Apache 2.0" -> url("https://www.apache.org/license
 
 ThisBuild / scalaVersion := scala3Version
 
+ThisBuild / semanticdbEnabled := true
+ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
+ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
+
 val scalaTest = Seq(
   "org.scalactic" %% "scalactic" % "3.2.10",
   "org.scalatest" %% "scalatest" % "3.2.10" % "test",

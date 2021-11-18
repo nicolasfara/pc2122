@@ -1,7 +1,9 @@
 package it.unibo.pc.utils
 
 import scala.collection.MultiSet
-import scala.quoted.{ Expr, Quotes, Type }
+import scala.quoted.Expr
+import scala.quoted.Quotes
+import scala.quoted.Type
 
 extension [S <: reflect.Enum](mSet: MultiSet[S])
   def apply(elem: S): Int = mSet.count(elem == _)

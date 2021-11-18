@@ -1,8 +1,10 @@
 package it.unibo.pc
 
-import it.unibo.pc.utils.given
+import it.unibo.pc.PetriNet.checkSafetyProperty
+import it.unibo.pc.PetriNet.toSystem
 import it.unibo.pc.utils.*
-import it.unibo.pc.PetriNet.{ checkSafetyProperty, toSystem }
+import it.unibo.pc.utils.given
+
 import scala.collection.MultiSet
 import scala.language.implicitConversions
 

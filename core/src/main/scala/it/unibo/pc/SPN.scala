@@ -1,8 +1,8 @@
 package it.unibo.pc
 
-import scala.collection.MultiSet
-
 import it.unibo.pc.utils.*
+
+import scala.collection.MultiSet
 
 object SPN {
 
