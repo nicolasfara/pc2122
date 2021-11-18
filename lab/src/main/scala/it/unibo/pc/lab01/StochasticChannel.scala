@@ -1,4 +1,6 @@
-package it.unibo.pc
+package it.unibo.pc.lab01
+
+import it.unibo.pc.CTMC
 
 object StochasticChannel extends App {
 

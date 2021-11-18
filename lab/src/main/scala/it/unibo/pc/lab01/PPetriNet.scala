@@ -1,7 +1,9 @@
-package it.unibo.pc
+package it.unibo.pc.lab01
 
-import it.unibo.pc.utils.given
+import it.unibo.pc.PriorityPetriNet
 import it.unibo.pc.PriorityPetriNet.toSystem
+import it.unibo.pc.utils.*
+import it.unibo.pc.utils.given
 
 import scala.collection.MultiSet
 import scala.language.implicitConversions

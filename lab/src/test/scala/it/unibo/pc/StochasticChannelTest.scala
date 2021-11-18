@@ -1,5 +1,6 @@
 package it.unibo.pc
 
+import it.unibo.pc.lab01.StochasticChannel
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

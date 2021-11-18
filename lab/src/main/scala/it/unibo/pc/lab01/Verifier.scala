@@ -1,14 +1,14 @@
-package it.unibo.pc
+package it.unibo.pc.lab01
 
-import it.unibo.pc.PetriNet.checkSafetyProperty
 import it.unibo.pc.PetriNet.toSystem
-import it.unibo.pc.utils.*
 import it.unibo.pc.utils.given
+import it.unibo.pc.PetriNet
+import it.unibo.pc.{ ~~>, ^^^ }
 
 import scala.collection.MultiSet
 import scala.language.implicitConversions
 
-object ReadersWriterPetriNet {
+object Verifier {
 
   enum States {
     case P1, P2, P3, P4, P5, P6, P7
