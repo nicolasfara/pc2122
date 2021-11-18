@@ -8,7 +8,7 @@ import it.unibo.pc.utils.given
 import scala.collection.MultiSet
 import scala.language.implicitConversions
 
-object PPetriNet extends App {
+object Artist extends App {
 
   enum State {
     case P0, P1, P2
