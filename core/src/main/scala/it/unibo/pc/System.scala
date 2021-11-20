@@ -45,15 +45,12 @@ trait System[S] extends CoreSystem[S] {
 object System {
 
   // The most general case, an intensional one
-  def ofFunction[S](f: PartialFunction[S, Set[S]]): System[S] = new System[S] {
+  def ofFunction[S](f: PartialFunction[S, Set[S]]): System[S] = new System[S] with CoreSystem[S] {
     override def next(s: S) = f.applyOrElse(s, _ => Set[S]())
   }
 
-  // Extensional specification
-  def ofRelation[S](rel: Set[(S, S)]): System[S] = ofFunction { case s: S =>
-    rel filter (_._1 == s) map (_._2)
-  }
-
   // Extensional with varargs.. note binary tuples can be defined by s->b
-  def ofTransitions[S](rel: (S, S)*): System[S] = ofRelation(rel.toSet)
+  def ofTransitions[S](rel: (S, S)*): System[S] = ofFunction { case s: S =>
+    rel.filter(_._1 == s).map(_._2).toSet
+  }
 }
