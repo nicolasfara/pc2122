@@ -45,7 +45,7 @@ trait System[S] extends CoreSystem[S] {
 object System {
 
   // The most general case, an intensional one
-  def ofFunction[S](f: PartialFunction[S, Set[S]]): System[S] = new System[S] with CoreSystem[S] {
+  def ofFunction[S](f: PartialFunction[S, Set[S]]): System[S] = new System[S] {
     override def next(s: S) = f.applyOrElse(s, _ => Set[S]())
   }
 
