@@ -1,5 +1,7 @@
 package it.unibo.pc
 
+import scala.annotation.tailrec
+
 /**
  * Basically the definition of a Rewrite System
  * @tparam S
@@ -18,15 +20,14 @@ trait System[S] extends CoreSystem[S] {
 
   def complete(p: List[S]): Boolean = normalForm(p.last)
 
-  // paths of exactly length `depth`
-  def paths(s: S, depth: Int): LazyList[List[S]] = depth match {
-    case 0 => LazyList()
-    case 1 => LazyList(List(s))
-    case _ =>
-      for {
-        path <- paths(s, depth - 1)
-        next <- next(path.last)
-      } yield (path :+ next)
+  def paths(s: S, depth: Int): LazyList[List[S]] = {
+    @tailrec
+    def _path(s: S, depth: Int, res: LazyList[List[S]]): LazyList[List[S]] = depth match {
+      case 0 => LazyList.empty
+      case 1 => res
+      case _ => _path(s, depth - 1, for (path <- res; next <- next(path.last)) yield (path :+ next))
+    }
+    _path(s, depth, LazyList(List(s)))
   }
 
   // complete path with length '<= depth'
