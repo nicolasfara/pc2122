@@ -1,5 +1,6 @@
 package it.unibo.pc
 
+import it.unibo.pc.dsl.*
 import it.unibo.pc.PNMutualExclusion.Place
 import it.unibo.pc.PNMutualExclusion.Place.C
 import it.unibo.pc.PNMutualExclusion.Place.N
@@ -19,9 +20,11 @@ object PNMutualExclusion extends App {
   import Place.*
 
   // DSL-like specification of A Petri Net
-  def mutualExclusionSystem() = toSystem(
-    PetriNet(N ~~> T, T ~~> C ^^^ C, C ~~> MultiSet.empty),
-  )
+  def mutualExclusionSystem() = petriNet {
+    N ~~> T
+    T ^^^ (C, C)
+    C ~~> MultiSet.empty
+  }
 
   // example usage
   println(mutualExclusionSystem().paths(MultiSet(N, N), 7).toList.mkString("\n"))
