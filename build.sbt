@@ -13,7 +13,7 @@ ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
 
 val scalaTest = Seq(
-  "org.scalactic" %% "scalactic" % "3.2.10",
+  "org.scalactic" %% "scalactic" % "3.2.19",
   "org.scalatest" %% "scalatest" % "3.2.10" % "test",
 )
 
