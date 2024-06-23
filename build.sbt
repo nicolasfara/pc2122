@@ -14,7 +14,7 @@ ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports"
 
 val scalaTest = Seq(
   "org.scalactic" %% "scalactic" % "3.2.10",
-  "org.scalatest" %% "scalatest" % "3.2.10" % "test",
+  "org.scalatest" %% "scalatest" % "3.2.19" % "test",
 )
 
 val scalaCheck = "org.scalacheck" %% "scalacheck" % "1.15.4" % "test"
