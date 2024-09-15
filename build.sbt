@@ -17,7 +17,7 @@ val scalaTest = Seq(
   "org.scalatest" %% "scalatest" % "3.2.10" % "test",
 )
 
-val scalaCheck = "org.scalacheck" %% "scalacheck" % "1.15.4" % "test"
+val scalaCheck = "org.scalacheck" %% "scalacheck" % "1.18.1" % "test"
 val scalaChart = "de.sciss" %% "scala-chart" % "0.8.0"
 val scalaContrib = ("org.scala-lang.modules" %% "scala-collection-contrib" % "0.2.2").cross(CrossVersion.for3Use2_13)
 
